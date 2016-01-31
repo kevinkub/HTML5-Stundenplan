@@ -22,12 +22,14 @@ Color palette:
 	.asbestos { background: #7f8c8d; }
 */
 
+/* We implement scrolling when we need to */
+body, html {
+    overflow: hidden;
+}
 
 body {
 	font-family: "Roboto";
 	/* Mobile fixes */
-	position: fixed;
-	overflow: hidden;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-overflow-scrolling: touch;
 }
