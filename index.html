@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="robots" content="index, follow">
-		<meta name="theme-color" content="#f4f5f6">
-		<meta name="apple-mobile-web-app-status-bar-style" content="#f4f5f6">
+		<meta name="theme-color" content="#1abc9c">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#1abc9c">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="Kevin Kub">
@@ -14,7 +14,6 @@
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/fonts.css">
 		<link rel="stylesheet" href="css/style.css">
-		<!--<link rel="icon" href="http://milligram.github.io/img/favicon.png">-->
 	</head>
 	<body>
 		<nav>
@@ -26,7 +25,7 @@
 			</nav>
 		</nav>
 		<main>
-			<section id="calendar" v-if="view == 'calendar'">
+			<section id="calendar" v-show="view == 'calendar'">
 				<div class="slider">
 					<div class="calendar" v-for="month in calendarGetMonthsToRender()">
 						<div class="month">
@@ -42,14 +41,15 @@
 							</div>
 							<div class="days">
 								<div class="day spacer" v-for="n in calendarGetNumberOfSpacers(month)"></div>
-								<div class="day" v-for="n in calendarGetLastDayOfMonth(month)" v-bind:class="{'active': viewData.calendar.day == n + 1}">
-									<a href="#" v-on:click="viewData.calendar.day = n+1">
+								<div class="day" v-for="day in calendarGetDaysInMonth(month)" v-bind:class="{'active': calendarIsCurrentDate(day)}">
+									<a href="#" v-on:click="viewData.calendar.currentDate = day">
 										<div class="label">
-											{{n + 1}}
-											<div class="eventindicator"></div>
+											{{day.getDate()}}
+											<div class="eventindicator" v-if="getLessonsByDate(day).length > 0"></div>
 										</div>
 									</a>
 								</div>
+								<div class="day spacer" v-for="n in (42 - calendarGetNumberOfSpacers(month) - calendarGetLastDayOfMonth(month))"></div>
 							</div>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 					<li v-for="lesson in getLessonsForCurrentDate()">
 						<a href="#">
 							<div class="course">
-								<div class="badge"><div class="label">{{lesson.course}}</div></div>
+								<div class="badge" v-bind:style="{'background': getColorForCourseName(lesson.course)}"><div class="label">{{lesson.course}}</div></div>
 								<div class="details">
 									<div class="line"><span class="primary">{{lesson.subscriber}}</span> <span class="disclosure">{{getTimeStringForLesson(lesson)}}</span></div>
 									<div class="line"><span class="secondary">{{lesson.location}}</span></div>
@@ -69,14 +69,14 @@
 					</li>
 				</ul>
 			</section>
-			<section id="courses" v-if="view == 'courses'">
+			<section id="courses" v-show="view == 'courses'">
 				<ul class="courselist">
 					<li v-for="course in getCourses()">
 						<a href="#">
 							<div class="course">
-								<div class="badge"><div class="label">{{ course }}</div></div>
+								<div class="badge" v-bind:style="{'background': getColorForCourseName(course)}"><div class="label">{{ course }}</div></div>
 								<div class="details">
-									<div class="line"><span class="primary">{{ getSubscribersByCourse(course) }}</span> <span class="disclosure"></span></div>
+									<div class="line"><span class="primary">{{ getSubscribersByCourse(course) }}</span> <span class="disclosure">{{ getProgressForCourse(course) }}%</span></div>
 									<div class="line"><span class="secondary">{{ getLessonsForCourse(course).length }} Vorlesungen</span></div>
 								</div>
 							</div>
@@ -84,13 +84,17 @@
 					</li>
 				</ul>
 			</section>
-			<section id="settings" v-if="view == 'settings'">
+			<section id="settings" v-show="view == 'settings'">
 				<div class="setting">
 					<div class="key">
 						Kurs
 					</div>
 					<div class="value">
-						pfbw113a
+						<form>
+							<select name="course" v-model="course" v-on:change="courseChanged()">
+								<option v-for="c in courses" value="{{c}}">{{c}}</option>
+							</select>
+						</form>
 					</div>
 				</div>
 				<div class="setting">
@@ -98,7 +102,7 @@
 						Letzte Aktualisierung
 					</div>
 					<div class="value">
-						30.01.2016 21:34
+						{{lastRefresh}}
 					</div>
 				</div>
 			</section>
@@ -107,6 +111,7 @@
 		<script src="js/vue-resource.min.js"></script>
 		<script src="js/ical.js"></script>
 		<script src="js/swipe.js"></script>
+		<script src="js/fastclick.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 </html>

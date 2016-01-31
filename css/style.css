@@ -91,7 +91,7 @@ body > nav > nav > a.active {
 
 .calendar .month h2 {
 	font-weight: bold;
-	line-height: 60px;
+	line-height: 40px;
 	color: #424242;
 }
 
@@ -102,7 +102,7 @@ body > nav > nav > a.active {
 
 .calendar .month .labels .label {
 	color: rgba(0,0,0,.6);
-	line-height: 45px;
+	line-height: 35px;
 }
 
 .calendar .month .days {
@@ -115,8 +115,8 @@ body > nav > nav > a.active {
 }
 
 .calendar .month .days .day {
-	height: 60px;
-	line-height: 60px;
+	height: 40px;
+	line-height: 40px;
 	position: relative;
 }
 
@@ -128,7 +128,7 @@ body > nav > nav > a.active {
 	background: white;
 	border-radius: 50%;
 	height: 5px;
-	margin: -20px auto;
+	margin: -10px auto;
 	width: 5px;
 }
 
@@ -186,10 +186,14 @@ body > nav > nav > a.active {
 	font-weight: 300;
 	left: 0;
 	line-height: 80px;
+	margin-left: 10%;
+	overflow: hidden;
 	position: absolute;
-	text-align:center;
+	text-align: center;
+	text-overflow: ellipsis;
 	top: 0;
-	width: 100%;
+	white-space: nowrap;
+	width: 80%;
 }
 .courselist .badge:before {
 	content: "";
@@ -232,6 +236,15 @@ body > nav > nav > a.active {
 	color: rgba(0,0,0,0.5);
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 }
+
+.setting .value select {
+	border: none;
+	background: white;
+	font-size: 16px;
+	color: rgba(0,0,0,0.5);
+	width: 100%;
+	-webkit-appearance: none;
+}	
 
 .setting:last-child .value {
 	border-bottom: none;
