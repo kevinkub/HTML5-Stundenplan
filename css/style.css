@@ -24,7 +24,10 @@ Color palette:
 
 /* We implement scrolling when we need to */
 body, html {
-    overflow: hidden;
+	height: 100%;
+	overflow: hidden;
+	width: 100%;
+	position: fixed;
 }
 
 body {
