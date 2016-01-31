@@ -25,11 +25,13 @@ Color palette:
 
 body {
 	font-family: "Roboto";
+	/* Mobile fixes */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-overflow-scrolling: touch;
 }
 
 /* Navigation Bar */
 body > nav {
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	position: fixed;
 	z-index: 200;
 	top:0;
