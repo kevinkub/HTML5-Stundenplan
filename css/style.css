@@ -67,6 +67,23 @@ body > nav > nav > a.active {
 }
 
 /* View: Calendar */
+/* Slider sub module */
+#calendar {
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
+}
+#calendar .slider {
+	overflow: hidden;
+	position: relative;
+}
+#calendar .slider .calendar {
+	float:left;
+	width:100%;
+	position: relative;
+}
+/* End sub module */
+
 .calendar {
 	text-transform: uppercase;
 	text-align: center;

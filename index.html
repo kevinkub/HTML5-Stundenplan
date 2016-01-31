@@ -27,27 +27,29 @@
 		</nav>
 		<main>
 			<section id="calendar" v-if="view == 'calendar'">
-				<div class="calendar">
-					<div class="month">
-						<h2>{{getMonthNameForMonth(viewData.calendar.month - 1)}}</h2>
-						<div class="labels">
-							<div class="label">Mo</div>
-							<div class="label">Di</div>
-							<div class="label">Mi</div>
-							<div class="label">Do</div>
-							<div class="label">Fr</div>
-							<div class="label">Sa</div>
-							<div class="label">So</div>
-						</div>
-						<div class="days">
-							<div class="day spacer" v-for="n in calendarGetNumberOfSpacers()"></div>
-							<div class="day" v-for="n in calendarGetLastDayOfMonth()" v-bind:class="{'active': viewData.calendar.day == n + 1}">
-								<a href="#" v-on:click="viewData.calendar.day = n+1">
-									<div class="label">
-										{{n + 1}}
-										<div class="eventindicator"></div>
-									</div>
-								</a>
+				<div class="slider">
+					<div class="calendar" v-for="month in calendarGetMonthsToRender()">
+						<div class="month">
+							<h2>{{calendarGetMonthName(month)}}</h2>
+							<div class="labels">
+								<div class="label">Mo</div>
+								<div class="label">Di</div>
+								<div class="label">Mi</div>
+								<div class="label">Do</div>
+								<div class="label">Fr</div>
+								<div class="label">Sa</div>
+								<div class="label">So</div>
+							</div>
+							<div class="days">
+								<div class="day spacer" v-for="n in calendarGetNumberOfSpacers(month)"></div>
+								<div class="day" v-for="n in calendarGetLastDayOfMonth(month)" v-bind:class="{'active': viewData.calendar.day == n + 1}">
+									<a href="#" v-on:click="viewData.calendar.day = n+1">
+										<div class="label">
+											{{n + 1}}
+											<div class="eventindicator"></div>
+										</div>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -104,6 +106,7 @@
 		<script src="js/vue.min.js"></script>
 		<script src="js/vue-resource.min.js"></script>
 		<script src="js/ical.js"></script>
+		<script src="js/swipe.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 </html>

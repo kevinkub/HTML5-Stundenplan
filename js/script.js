@@ -20,9 +20,7 @@
 			lessons: [],
 			viewData: {
 				calendar: {
-					day: 0,
-					month: 0,
-					year: 0
+					currentDate: new Date()
 				}
 			}
 		},
@@ -48,22 +46,30 @@
 				});
 			},
 			getLessonsForCurrentDate: function(){
-				return this.getLessonsByDate(new Date(
-					this.viewData.calendar.year, 
-					this.viewData.calendar.month - 1, 
-					this.viewData.calendar.day
-				));
+				return this.getLessonsByDate(this.viewData.calendar.currentDate);
 			},
-			calendarGetNumberOfSpacers: function() {
-				var day = new Date(this.viewData.calendar.year, this.viewData.calendar.month - 1, 1).getDay() - 1;
+			calendarGetNumberOfSpacers: function(date) {
+				var date = new Date(date);
+				date.setDate(1)
+				var day = date.getDay() - 1;
 				return day == -1 ? 6 : day;
 			},
-			calendarGetLastDayOfMonth: function() {
-				var date = new Date(this.viewData.calendar.year, this.viewData.calendar.month, 1);
+			calendarGetLastDayOfMonth: function(date) {
+				var date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
 				return new Date(date - 1).getDate();
 			},
-			getMonthNameForMonth: function(month) {
-				return ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"][month];
+			calendarGetMonthName: function(date) {
+				return ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"][date.getMonth()];
+			},
+			calendarGetMonthsToRender: function() {
+				var months = [];
+				for(var i = -12; i < 12; i++) {
+					var date = new Date();
+					date.setDate(1);
+					date.setMonth(date.getMonth() + i);
+					months.push(date);
+				}
+				return months;
 			},
 			getTimeStringForLesson: function(lesson) {
 				function nullify(num) {
@@ -139,6 +145,10 @@
 				}
 			}, function (response) {
 				// error
+			});
+			// Setup swiping
+			window.swipe = new Swipe(document.getElementById('calendar'), {
+				startSlide: 12
 			});
 		}
 	});
