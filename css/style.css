@@ -29,6 +29,7 @@ body {
 
 /* Navigation Bar */
 body > nav {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	position: fixed;
 	z-index: 200;
 	top:0;
@@ -91,7 +92,7 @@ body > main {
 	position: fixed;
 	top: 114px;
 	left: 0;
-	width: 100%;
+	right: 0;
 	bottom: 0;
 }
 #calendar .slider {
@@ -99,8 +100,8 @@ body > main {
 	position: absolute;
 	top:0;
 	height: 300px;
-	left:0;
-	width: 100%;
+	left: 0;
+	right: 0;
 }
 #calendar .slider .calendar {
 	float:left;

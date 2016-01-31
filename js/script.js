@@ -242,6 +242,8 @@
 					FastClick.attach(document.body);
 				}, false);
 			}
+			// Fix dark shaddows on clicks
+			document.addEventListener("touchstart", function(){}, true);
 		}
 	});
 	
