@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="robots" content="index, follow">
+		<meta name="theme-color" content="#f4f5f6">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#f4f5f6">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Kevin Kub">
+		<meta name="description" content="FHDW Stundenplan für FHDW und b.i.b.">
+		<title>Stundenplan</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/fonts.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!--<link rel="icon" href="http://milligram.github.io/img/favicon.png">-->
+	</head>
+	<body>
+		<nav>
+			<h1>Stundenplan</h1>
+			<nav>
+				<a href="#" v-bind:class="{ 'active': view == 'calendar' }" v-on:click="view = 'calendar'">Kalender</a>
+				<a href="#" v-bind:class="{ 'active': view == 'courses' }" v-on:click="view = 'courses'">Kurse</a>
+				<a href="#" v-bind:class="{ 'active': view == 'settings' }" v-on:click="view = 'settings'">Einstellungen</a>
+			</nav>
+		</nav>
+		<main>
+			<section id="calendar" v-if="view == 'calendar'">
+				<div class="calendar">
+					<div class="month">
+						<h2>{{getMonthNameForMonth(viewData.calendar.month - 1)}}</h2>
+						<div class="labels">
+							<div class="label">Mo</div>
+							<div class="label">Di</div>
+							<div class="label">Mi</div>
+							<div class="label">Do</div>
+							<div class="label">Fr</div>
+							<div class="label">Sa</div>
+							<div class="label">So</div>
+						</div>
+						<div class="days">
+							<div class="day spacer" v-for="n in calendarGetNumberOfSpacers()"></div>
+							<div class="day" v-for="n in calendarGetLastDayOfMonth()" v-bind:class="{'active': viewData.calendar.day == n + 1}">
+								<a href="#" v-on:click="viewData.calendar.day = n+1">
+									<div class="label">
+										{{n + 1}}
+										<div class="eventindicator"></div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<ul class="courselist">
+					<li v-for="lesson in getLessonsForCurrentDate()">
+						<a href="#">
+							<div class="course">
+								<div class="badge"><div class="label">{{lesson.course}}</div></div>
+								<div class="details">
+									<div class="line"><span class="primary">{{lesson.subscriber}}</span> <span class="disclosure">{{getTimeStringForLesson(lesson)}}</span></div>
+									<div class="line"><span class="secondary">{{lesson.location}}</span></div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section id="courses" v-if="view == 'courses'">
+				<ul class="courselist">
+					<li v-for="course in getCourses()">
+						<a href="#">
+							<div class="course">
+								<div class="badge"><div class="label">{{ course }}</div></div>
+								<div class="details">
+									<div class="line"><span class="primary">{{ getSubscribersByCourse(course) }}</span> <span class="disclosure"></span></div>
+									<div class="line"><span class="secondary">{{ getLessonsForCourse(course).length }} Vorlesungen</span></div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section id="settings" v-if="view == 'settings'">
+				<div class="setting">
+					<div class="key">
+						Kurs
+					</div>
+					<div class="value">
+						pfbw113a
+					</div>
+				</div>
+				<div class="setting">
+					<div class="key">
+						Letzte Aktualisierung
+					</div>
+					<div class="value">
+						30.01.2016 21:34
+					</div>
+				</div>
+			</section>
+		</main>
+		<script src="js/vue.min.js"></script>
+		<script src="js/vue-resource.min.js"></script>
+		<script src="js/ical.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>

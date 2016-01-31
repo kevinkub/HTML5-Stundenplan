@@ -1,0 +1,227 @@
+/*
+Color palette:
+	.turquoise { background: #1abc9c; }
+	.emerland { background: #2ecc71; }
+	.peterriver { background: #3498db; }
+	.amethyst { background: #9b59b6; }
+	.wetasphalt { background: #34495e; }
+	.greensea { background: #16a085; }
+	.nephritis { background: #27ae60; }
+	.belizehole { background: #2980b9; }
+	.wisteria { background: #8e44ad; }
+	.midnightblue { background: #2c3e50; }
+	.sunflower { background: #f1c40f; }
+	.carrot { background: #e67e22; }
+	.alizarin { background: #e74c3c; }
+	.clouds { background: #ecf0f1; color: #999; }
+	.concrete { background: #95a5a6; }
+	.orange { background: #f39c12; }
+	.pumpkin { background: #d35400; }
+	.pomegranate { background: #c0392b; }
+	.silver { background: #bdc3c7; }
+	.asbestos { background: #7f8c8d; }
+*/
+
+
+body {
+	font-family: "Roboto";
+}
+
+/* Navigation Bar */
+body > nav {
+	background: #1abc9c;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+	line-height: 56px;
+	margin-bottom: 20px;
+}
+
+body > nav > h1 {
+	color: white;
+	margin-left: 20px;
+	font-size: 20px;
+	font-weight: 400;
+	letter-spacing: .02em;
+}
+
+/* Tab bar */
+body > nav > nav {
+	background: #1abc9c;
+	display: flex;
+	height: 48px;
+	line-height: 48px;
+}
+
+body > nav > nav > a {
+	color: rgba(255, 255, 255, .6);
+	flex-grow: 1;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+body > nav > nav > a.active {
+	box-shadow:inset 0px -2px 0px 0px #f00;
+	color: white;
+}
+
+/* View: Calendar */
+.calendar {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.calendar .month h2 {
+	font-weight: bold;
+	line-height: 60px;
+	color: #424242;
+}
+
+.calendar .month .labels .label, .calendar .month .days .day {
+	float:left;
+	width: 14.285%;
+}
+
+.calendar .month .labels .label {
+	color: rgba(0,0,0,.6);
+	line-height: 45px;
+}
+
+.calendar .month .days {
+	background: #1abc9c;
+}
+
+.calendar .month .days .day a {
+	text-decoration: none;
+	color: white;
+}
+
+.calendar .month .days .day {
+	height: 60px;
+	line-height: 60px;
+	position: relative;
+}
+
+.calendar .month .days .day.spacer {
+	background: transparent;
+}
+
+.calendar .month .days .day .label .eventindicator {
+	background: white;
+	border-radius: 50%;
+	height: 5px;
+	margin: -20px auto;
+	width: 5px;
+}
+
+.calendar .month .days:after {
+	content: ""; 
+	clear: both; 
+	display: block;
+}
+
+.calendar .month .labels:after {
+	content: ""; 
+	clear: both; 
+	display: block;
+}
+
+.calendar .month .days .day.active {
+	background: white;
+	font-weight: bold;
+}
+.calendar .month .days .day.active a {
+	color: #1abc9c;
+}
+.calendar .month .days .day.active .eventindicator {
+	background: #1abc9c; 
+}
+
+/* Component: Course List */
+.courselist {
+	overflow-y: scroll;
+}
+
+.courselist .course {
+	padding: 10px 20px;
+	position: relative;
+	color: black;
+}
+
+.courselist a {
+	text-decoration: none;
+}
+
+.courselist a:hover .course {
+	background: #eee;
+}
+
+.courselist .course .badge {
+	border-radius: 50%;
+	background: #1abc9c;
+	float:left;
+	position: relative;
+	width: 80px;
+}
+.courselist .badge .label {
+	color: white;
+	font-weight: 300;
+	left: 0;
+	line-height: 80px;
+	position: absolute;
+	text-align:center;
+	top: 0;
+	width: 100%;
+}
+.courselist .badge:before {
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+.courselist .details {
+	margin-left: 80px;
+	height: 50px;
+	line-height: 25px;
+	padding: 15px 15px;
+}
+
+.courselist .details .line .primary {
+	font-weight: bold;
+}
+
+.courselist .details .line .disclosure {
+	float: right;
+}
+
+/* Settings */
+.setting {
+	padding: 0 20px;
+}
+
+.setting .key, .setting .value {
+	padding: 0 10px;
+}
+
+.setting .key {
+	margin-top:10px;
+	font-size: 120%;
+	line-height: 40px;
+}
+
+.setting .value {
+	padding-bottom: 20px;
+	color: rgba(0,0,0,0.5);
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.setting:last-child .value {
+	border-bottom: none;
+} 
+
+/* Spacer Utility */
+.spacer {
+	height: 20px;
+	width: 100%;
+}
