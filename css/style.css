@@ -90,7 +90,7 @@ body > main {
 	padding: 10px 0;
 	bottom: 0;
 	z-index: 100;
-	overflow: scroll;
+	overflow: auto;
 }
 
 /* View: Calendar */
@@ -203,7 +203,7 @@ body > main {
 /* General */
 
 .courselist {
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .courselist .course {
