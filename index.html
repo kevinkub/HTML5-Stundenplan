@@ -91,7 +91,7 @@
 					</div>
 					<div class="value">
 						<form>
-							<select name="course" v-model="course" v-on:change="courseChanged()">
+							<select name="course" v-model="course" v-on:change="courseChanged()" v-on:click="this.focus();">
 								<option v-for="c in courses" value="{{c}}">{{c}}</option>
 							</select>
 						</form>
