@@ -35,6 +35,4 @@
     <preference name="StatusBarBackgroundColor" value="#12836D" />
     <preference name="StatusBarStyle" value="lightcontent" />
 
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~1.5" />
-
 </widget>
