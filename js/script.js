@@ -237,10 +237,12 @@
 				continuous: false
 			});
 			// Setup fastclick
-			if ('addEventListener' in document) {
-				document.addEventListener('DOMContentLoaded', function() {
-					FastClick.attach(document.body);
-				}, false);
+			if(!window.cordova) {
+				if ('addEventListener' in document) {
+					document.addEventListener('DOMContentLoaded', function() {
+						FastClick.attach(document.body);
+					}, false);
+				}
 			}
 			// Fix dark shaddows on clicks
 			document.addEventListener("touchstart", function(){}, true);
