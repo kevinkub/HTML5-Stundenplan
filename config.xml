@@ -26,4 +26,7 @@
 
     <feature name="http://api.phonegap.com/1.0/network" />
 
+    <plugin name="cordova-plugin-whitelist" />
+    <access origin="https://query.yahooapis.com/" subdomains="false" />
+
 </widget>
