@@ -29,7 +29,7 @@
     <plugin name="cordova-plugin-whitelist" />
     <access origin="https://query.yahooapis.com/" subdomains="false" />
 
-    <plugin name="com.phonegap.plugin.statusbar" spec="~1.1" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.1" />
     <preference name="StatusBarBackgroundColor" value="#12836D" />
     <preference name="StatusBarStyle" value="lightcontent" />
 
