@@ -90,9 +90,9 @@
 						Kurs
 					</div>
 					<div class="value">
-						<form>
-							<input list="courses" name="course" v-model="course" v-on:change="courseChanged()">
-							<datalist id="courses">
+						<form onsubmit="this.course.blur(); return false;">
+							<input list="clist" name="course" v-model="course" v-on:change="courseChanged()">
+							<datalist id="clist">
 								<option v-for="c in courses" value="{{c}}">
 							</datalist>
 						</form>
