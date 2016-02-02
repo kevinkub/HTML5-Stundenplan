@@ -91,9 +91,10 @@
 					</div>
 					<div class="value">
 						<form>
-							<select name="course" v-model="course" v-on:change="courseChanged()">
+							<input list="courses" name="course" v-model="course" v-on:change="courseChanged()">
+							<datalist id="courses">
 								<option v-for="c in courses" value="{{c}}">{{c}}</option>
-							</select>
+							</datalist>
 						</form>
 					</div>
 				</div>
@@ -111,7 +112,7 @@
 		<script src="js/vue-resource.min.js"></script>
 		<script src="js/ical.js"></script>
 		<script src="js/swipe.js"></script>
-		<!--<script src="js/fastclick.js"></script>-->
+		<script src="js/fastclick.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 </html>

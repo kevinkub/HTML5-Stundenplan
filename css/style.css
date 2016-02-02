@@ -37,6 +37,11 @@ body {
 	-webkit-overflow-scrolling: touch;
 }
 
+/* Startup: hide content */
+body > section {
+	visibility: hidden;
+}
+
 /* Navigation Bar */
 body > nav {
 	position: fixed;
@@ -283,10 +288,12 @@ body > main {
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.setting .value select {
+.setting .value input {
 	border: none;
 	background: white;
 	font-size: 16px;
+	line-height: 32px;
+	margin: -8px 0;
 	color: rgba(0,0,0,0.5);
 	width: 100%;
 	-webkit-appearance: none;
