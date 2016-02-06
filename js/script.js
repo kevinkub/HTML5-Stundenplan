@@ -43,8 +43,19 @@
 				}
 			}
 		},
-		methods: {
-			getCourses: function () {
+		computed: {
+			dayMap: function () {
+				var map = {};
+				this.lessons.forEach(function(lesson){
+					var key = lesson.startDate.toDateString();
+					if(!map[key]) { 
+						map[key] = [];
+					}
+					map[key].push(lesson);
+				});
+				return map;
+			},
+			courseNames: function() {
 				return this.lessons.map(function(el){
 					return el.course;
 				}).filter(Filter.Unique).sort(function(a, b){
@@ -52,6 +63,11 @@
 					if(a > b) return 1;
 					return 0;
 				});
+			}
+		},
+		methods: {
+			getCourses: function () {
+				return this.courseNames;
 			},
 			getSubscribersByCourse: function(course) {
 				return this.getLessonsForCourse(course).map(function(el){
@@ -90,9 +106,8 @@
 				return Math.round(100 * (finished / (finished + unfinished)));
 			},
 			getLessonsByDate: function(date) {
-				return this.lessons.filter(function(el){
-					return el.startDate.toDateString() == date.toDateString();
-				});
+				window.y = this;
+				return this.dayMap[date.toDateString()] || [];
 			},
 			getLessonsForCurrentDate: function(){
 				return this.getLessonsByDate(this.viewData.calendar.currentDate);
@@ -246,6 +261,13 @@
 			}
 			// Fix dark shaddows on clicks
 			document.addEventListener("touchstart", function(){}, true);
+		}
+	});
+	
+	instance.$watch('course', function (val) {
+		console.log(this.courseNames, val);
+		if(this.courses.indexOf(val) != -1) {
+			this.courseChanged();
 		}
 	});
 	

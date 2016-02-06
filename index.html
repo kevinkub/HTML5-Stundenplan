@@ -91,10 +91,10 @@
 					</div>
 					<div class="value">
 						<form onsubmit="this.course.blur(); return false;">
-							<input list="clist" name="course" v-model="course" v-on:change="courseChanged()">
-							<datalist id="clist">
-								<option v-for="c in courses" value="{{c}}">
-							</datalist>
+							<input name="course" v-model="course">
+							<ul class="list">
+								<li v-for="courseName in courses | filterBy course | limitBy 5" v-if="course.length > 0 && courseName != course" v-on:click="course = courseName">{{ courseName }}</li>
+							</ul>
 						</form>
 					</div>
 				</div>
