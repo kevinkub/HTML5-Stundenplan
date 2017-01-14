@@ -2,7 +2,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "de.kevinkub.stundenplanhtml5"
-        versionCode = "10" 
+        versionCode = "11" 
         version     = "1.1.0" >
 
     <name>Stundenplan</name>
