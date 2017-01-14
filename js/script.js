@@ -236,8 +236,8 @@
 			}
 			// Get all courses from ical listing
 			this.$http({url: URL.Courses, method: 'get'}).then(function (response) {
-				if(response && response.data && response.data.query && response.data.query.results && response.data.query.results.results && response.data.query.results.results.a) {
-					var data = response.data.query.results.results.a
+				if(response && response.data && response.data.query && response.data.query.results && response.data.query.results.a) {
+					var data = response.data.query.results.a
 						.filter(function( el ){ return el.href.indexOf('.ics') != -1 })
 						.map(function( el ){ return el.href.replace(".ics", ""); });
 					Cache.SetCourses(data);
