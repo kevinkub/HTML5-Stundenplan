@@ -1,7 +1,7 @@
 (function(){
 	
 	var URL = {};
-	URL.Courses = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20data.html.cssselect%20where%20url%3D%22http%3A%2F%2Fintranet.fhdw.de%2Fical%2F%22%20and%20css%3D%22a%22%20limit%20500&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+	URL.Courses = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fintranet.fhdw.de%2Fical%2F%22%20and%20xpath%3D%22.%2F%2Fa%22%20limit%20500&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 	URL.ForCourse = function(course) {
 		return "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fintranet.fhdw.de%2Fical%2F" + course + ".ics%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 	}
